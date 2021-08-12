@@ -3,8 +3,6 @@ info:
   title: Baremaps API
   description: Draft for a Baremaps API.
   version: 1.0.0
-servers:
-  - url: 'http://localhost:8080'
 tags:
   - name: Capabilities
     description: Information about this API
@@ -24,6 +22,22 @@ paths:
         The landing page provides links to the API definition,
         the Conformance statements and the available styles.
       operationId: getLandingPage
+      parameters:
+          - in: header
+            name: Host
+            schema:
+              type: string
+            required: true
+          - in: header
+            name: X-Forwarded-Host
+            schema:
+              type: string
+            required: false
+          - in: header
+            name: X-Forwarded-Proto
+            schema:
+              type: string
+            required: false
       responses:
         '200':
           description: |-

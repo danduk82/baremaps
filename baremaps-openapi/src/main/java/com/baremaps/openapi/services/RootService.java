@@ -3,13 +3,27 @@ package com.baremaps.openapi.services;
 import com.baremaps.api.DefaultApi;
 import com.baremaps.model.LandingPage;
 import com.baremaps.model.Link;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RootService implements DefaultApi {
 
+  private static final Logger logger = LoggerFactory.getLogger(RootService.class);
+
   @Override
-  public LandingPage getLandingPage() {
+  public LandingPage getLandingPage(String host,  String xForwardedHost, String xForwardedProto) {
 
     LandingPage landingPage = new LandingPage();
+//    ApiClient apiClient = this(Configuration.getDefaultApiClient());
+//    this.getApiClient().getBasePath();
+
+    logger.info("Listening on {}", super.getApiClient().getBasePath());
+//    if (typeof this.host === 'undefined' || this.host === '') {
+//      this.host = location.host;
+//    }
+//    if (location.port) {
+//      this.host = this.host + ':' + location.port;
+//    }
 
     landingPage.setTitle("Baremaps");
     landingPage.setDescription("Baremaps OGC API Landing Page");

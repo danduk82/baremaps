@@ -19,7 +19,6 @@ import org.jdbi.v3.postgres.PostgresPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import picocli.CommandLine.Command;
-import picocli.CommandLine.Mixin;
 import picocli.CommandLine.Option;
 
 import javax.sql.DataSource;
@@ -36,12 +35,6 @@ public class OpenApi implements Callable<Integer> {
       description = "The JDBC url of the Postgres database.",
       required = true)
   private String database;
-
-  @Option(
-          names = {"--host"},
-          paramLabel = "HOST",
-          description = "The host of the server.")
-  private String host = "localhost";
 
   @Option(
       names = {"--port"},
@@ -64,8 +57,8 @@ public class OpenApi implements Callable<Integer> {
 
     // Initialize the application
     ResourceConfig application = new ResourceConfig()
-            .register(CorsFilter.class)
             .registerClasses(RootService.class,
+                    CorsFilter.class,
                     ConformanceService.class,
                     CollectionsService.class,
                     StylesService.class,
